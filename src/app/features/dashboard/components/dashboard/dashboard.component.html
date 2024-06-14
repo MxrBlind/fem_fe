@@ -1,0 +1,12 @@
+<div class="container">
+  <br>
+  <p>Progreso del ciclo actual {{ currentCycleName }}: <span>{{ currentProgress }}%</span></p>
+  <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+  <br>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="5.0%" fxLayoutAlign="center">
+    <div *ngFor="let cardElement of getCardElements()">
+      <app-dashboard-card [cardElement] = 'cardElement'></app-dashboard-card>
+    </div>
+  </div>
+</div>
