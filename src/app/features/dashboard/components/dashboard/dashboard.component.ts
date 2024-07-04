@@ -1,14 +1,33 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DashboardCardElement} from "./model/DashboardCardElement";
+import {DashboardService} from "./service/dashboard.service";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+
+  dashboardService: DashboardService;
   currentCycleName: String = "Q3 2024";
   currentProgress: number = 60;
+  totalStudents: number = 0;
+
+  constructor(DashboardService: DashboardService) {
+    this.dashboardService = DashboardService;
+  }
+
+  ngOnInit(): void {
+    this.dashboardService.getStudentsCount().subscribe({
+      next: (res) => {
+        this.totalStudents = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 
   getCardElements(): DashboardCardElement[] {
 
@@ -18,13 +37,16 @@ export class DashboardComponent {
     const enrollmentsDashboardCard: DashboardCardElement = new DashboardCardElement();
 
     studentsDashboardCard.label = "alumnos";
-    studentsDashboardCard.total = 25;
+    studentsDashboardCard.total = this.totalStudents;
+    studentsDashboardCard.action = "/student";
 
     coursesDashboardCard.label = "materias";
     coursesDashboardCard.total = 8;
+    coursesDashboardCard.action = "/course";
 
     enrollmentsDashboardCard.label = "cursos";
     enrollmentsDashboardCard.total = 7;
+    enrollmentsDashboardCard.action = "/enrollment";
 
     return [studentsDashboardCard, coursesDashboardCard, enrollmentsDashboardCard];
   }
