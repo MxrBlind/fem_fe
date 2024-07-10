@@ -34,58 +34,10 @@ export class StudentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getEmployeeList();
+    this.getStudentList();
   }
 
-  deleteStudent(id: number) {
-    let confirm = window.confirm("¿Estas seguro de borrar este estudiante?");
-    if(confirm) {
-      this.studentService.deleteStudent(id).subscribe({
-        next: (res) => {
-          alert('Estudiante eliminado');
-          this.getEmployeeList();
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-    }
-  }
-
-  openEditForm(data: any) {
-    const dialogRef = this.dialog.open(StudentEditComponent, {
-      data,
-    });
-
-    dialogRef.afterClosed().subscribe({
-      next: (val: any) => {
-        if (val) {
-          this.getEmployeeList();
-        }
-      }
-    });
-  }
-
-  openNewEmployeeDialog() {
-    const dialogRef = this.dialog.open(StudentNewComponent);
-    dialogRef.afterClosed().subscribe({
-      next: (val: any) => {
-        if (val) {
-          this.getEmployeeList();
-        }
-      }
-    });
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-  private getEmployeeList() {
+  private getStudentList() {
     this.studentService.getStudents().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
@@ -98,4 +50,53 @@ export class StudentListComponent implements OnInit {
       },
     });
   }
+
+  openNewStudentDialog() {
+    const dialogRef = this.dialog.open(StudentNewComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (val: any) => {
+        if (val) {
+          this.getStudentList();
+        }
+      }
+    });
+  }
+
+  openEditStudentDialog(data: any) {
+    const dialogRef = this.dialog.open(StudentEditComponent, {
+      data,
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (val: any) => {
+        if (val) {
+          this.getStudentList();
+        }
+      }
+    });
+  }
+
+  deleteStudent(id: number) {
+    let confirm = window.confirm("¿Estas seguro de borrar este estudiante?");
+    if (confirm) {
+      this.studentService.deleteStudent(id).subscribe({
+        next: (res) => {
+          alert('Estudiante eliminado');
+          this.getStudentList();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
 }

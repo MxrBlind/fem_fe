@@ -37,6 +37,9 @@ import {
 } from "@angular/material/datepicker";
 import {MatSelect} from "@angular/material/select";
 import { StudentNewComponent } from './features/student/components/student-new/student-new.component';
+import { TeacherListComponent } from './features/teacher/components/teacher-list/teacher-list.component';
+import { TeacherNewComponent } from './features/teacher/components/teacher-new/teacher-new.component';
+import { TeacherEditComponent } from './features/teacher/components/teacher-edit/teacher-edit.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { StudentNewComponent } from './features/student/components/student-new/s
     NavbarComponent,
     StudentListComponent,
     StudentEditComponent,
-    StudentNewComponent
+    StudentNewComponent,
+    TeacherListComponent,
+    TeacherNewComponent,
+    TeacherEditComponent
   ],
   imports: [
     BrowserModule,

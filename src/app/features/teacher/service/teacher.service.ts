@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
+export class TeacherService {
 
   /*TODO: Make it env aware*/
   baseUrl: string = "http://localhost:8080";
@@ -13,19 +13,20 @@ export class StudentService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getStudents(): Observable<any> {
-    return this.httpClient.get(this.baseUrl + '/api/user?role=ROLE_STUDENT');
+  getTeachers(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/api/user?role=ROLE_TEACHER');
   }
 
-  addStudent(data: any): Observable<any> {
+  addTeacher(data: any): Observable<any> {
     return this.httpClient.post(this.baseUrl + '/api/user', data);
   }
 
-  updateStudent(id: number, data: any): Observable<any> {
+  updateTeacher(id: number, data: any): Observable<any> {
     return this.httpClient.put(this.baseUrl + "/api/user/" + id, data);
   }
 
-  deleteStudent(id: number): Observable<any> {
+  deleteTeacher(id: number): Observable<any> {
     return this.httpClient.delete(this.baseUrl + "/api/user/" + id);
   }
+
 }

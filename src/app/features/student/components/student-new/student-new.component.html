@@ -1,0 +1,73 @@
+<div mat-dialog-title>
+  <h1>Crear un estudiante</h1>
+</div>
+<form [formGroup]="studentNewForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Username:</mat-label>
+        <input matInput type="text" placeholder="i.e david@gmail.com" formControlName="username">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password:</mat-label>
+        <input matInput type="text" placeholder="i.e MyStrongPassword123#" formControlName="password">
+      </mat-form-field>
+    </div>
+    <div formGroupName="profile">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Email:</mat-label>
+          <input matInput type="email" placeholder="i.e david@gmail.com" formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre:</mat-label>
+          <input matInput type="text" placeholder="i.e David" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido paterno:</mat-label>
+          <input matInput placeholder="i.e Pérez" formControlName="parentLastName">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido materno:</mat-label>
+          <input matInput placeholder="i.e Pérez" formControlName="motherLastName">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de nacimiento:</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthDate">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>CURP:</mat-label>
+          <input matInput placeholder="i.e ABCD12345XYZ" formControlName="curp">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Dirección:</mat-label>
+          <input matInput placeholder="i.e Calle 123, Gdl" type="text" formControlName="address">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Iglesia:</mat-label>
+          <input matInput placeholder="i.e Salem" type="text" formControlName="church">
+        </mat-form-field>
+      </div>
+    </div>
+    <div formGroupName="role">
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="id">
+          <mat-option value="3">Estudiante</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions class="action-btns">
+    <button style="margin: 10px;" mat-raised-button color="accent" type="submit">Crear</button>
+    <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancelar</button>
+  </div>
+</form>
