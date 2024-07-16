@@ -9,10 +9,12 @@ import {DashboardService} from "./service/dashboard.service";
 })
 export class DashboardComponent implements OnInit {
 
+  /* TODO: get progress and current cycle dynamically */
   dashboardService: DashboardService;
   currentCycleName: String = "Q3 2024";
   currentProgress: number = 60;
   totalStudents: number = 0;
+  totalCourses: number = 0;
 
   constructor(DashboardService: DashboardService) {
     this.dashboardService = DashboardService;
@@ -25,8 +27,17 @@ export class DashboardComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-      },
+      }
     });
+
+    this.dashboardService.getCoursesCount().subscribe({
+      next: (res) => {
+        this.totalCourses = res;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   getCardElements(): DashboardCardElement[] {
@@ -41,10 +52,10 @@ export class DashboardComponent implements OnInit {
     studentsDashboardCard.action = "/student";
 
     coursesDashboardCard.label = "materias";
-    coursesDashboardCard.total = 8;
+    coursesDashboardCard.total = this.totalCourses;
     coursesDashboardCard.action = "/course";
 
-    enrollmentsDashboardCard.label = "cursos";
+    enrollmentsDashboardCard.label = "Ciclo";
     enrollmentsDashboardCard.total = 7;
     enrollmentsDashboardCard.action = "/enrollment";
 

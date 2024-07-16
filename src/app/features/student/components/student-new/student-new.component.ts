@@ -15,8 +15,7 @@ export class StudentNewComponent {
   constructor(
     private studentService: StudentService,
     private dialogRef: MatDialogRef<StudentNewComponent>,
-    private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    private formBuilder: FormBuilder
   ) {
     this.studentNewForm = this.formBuilder.group({
       username: ['', Validators.required],

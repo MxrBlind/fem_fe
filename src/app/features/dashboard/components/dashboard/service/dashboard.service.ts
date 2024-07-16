@@ -15,4 +15,8 @@ export class DashboardService {
     return this.httpClient.get(this.baseUrl + '/api/user/count');
   }
 
+  getCoursesCount(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/api/course/count');
+  }
+
 }
