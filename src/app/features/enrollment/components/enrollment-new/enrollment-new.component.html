@@ -1,0 +1,42 @@
+<div mat-dialog-title>
+  <h1>Registro de ciclo</h1>
+</div>
+<form [formGroup]="enrollmentNewForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="content">
+    <div formGroupName="student">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Estudiante:</mat-label>
+          <mat-select formControlName="id">
+            @for (student of students; track student) {
+              <mat-option [value]="student.id">{{ student.profile.name }} {{ student.profile.parentLastName }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div formGroupName="course">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Curso:</mat-label>
+          <mat-select formControlName="id">
+            @for (course of courses; track course) {
+              <mat-option [value]="course.id">{{ course.description }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Porcentaje de beca:</mat-label>
+        <input matInput placeholder="i.e 10" type="text" formControlName="scholarshipPercent">
+      </mat-form-field>
+  </div>
+  </div>
+  <div mat-dialog-actions class="action-btns">
+    <button style="margin: 10px;" mat-raised-button color="accent" type="submit">Crear</button>
+    <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancelar</button>
+  </div>
+</form>
