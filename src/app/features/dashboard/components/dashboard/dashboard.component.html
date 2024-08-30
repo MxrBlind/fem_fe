@@ -1,7 +1,7 @@
 <div class="container">
   <br>
   <p>Progreso del ciclo actual {{ currentCycleName }}: <span>{{ currentProgress }}%</span></p>
-  <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+  <mat-progress-bar mode="determinate" value="{{ currentProgress }}"></mat-progress-bar>
   <br>
 
   <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="5.0%" fxLayoutAlign="center">

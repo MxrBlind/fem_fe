@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DashboardCardElement} from "./model/DashboardCardElement";
-import {DashboardService} from "./service/dashboard.service";
+import {DashboardService} from "../../service/dashboard.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -9,11 +9,11 @@ import {DashboardService} from "./service/dashboard.service";
 })
 export class DashboardComponent implements OnInit {
 
-  /* TODO: get progress and current cycle dynamically */
   dashboardService: DashboardService;
-  currentCycleName: String = "Q3 2024";
-  currentProgress: number = 60;
+  currentCycleName: String = "";
+  currentProgress: number = 0;
   totalStudents: number = 0;
+  totalTeachers: number = 0;
   totalCourses: number = 0;
 
   constructor(DashboardService: DashboardService) {
@@ -21,9 +21,18 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dashboardService.getStudentsCount().subscribe({
+    this.dashboardService.getUserCount("ROLE_STUDENT").subscribe({
       next: (res) => {
         this.totalStudents = res;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+
+    this.dashboardService.getUserCount("ROLE_TEACHER").subscribe({
+      next: (res) => {
+        this.totalTeachers = res;
       },
       error: (err) => {
         console.log(err);
@@ -37,29 +46,43 @@ export class DashboardComponent implements OnInit {
       error: (err) => {
         console.log(err);
       }
+    });
+
+    this.dashboardService.getCurrentCycle().subscribe({
+      next: (res) => {
+        this.currentCycleName = res[0].description;
+        let startDate = new Date(res[0].startDate);
+        let endDate = new Date(res[0].endDate);
+        let nowDate = new Date();
+        let totalTime = endDate.getTime() - startDate.getTime();
+        let currentTime = endDate.getTime() - nowDate.getTime();
+        this.currentProgress = Math.round((currentTime / totalTime) * 100) ;
+      },
+      error: (err) => {
+        console.log(err);
+      }
     })
   }
 
   getCardElements(): DashboardCardElement[] {
 
-    /* TODO: To be filled dynamically */
     const studentsDashboardCard: DashboardCardElement  = new DashboardCardElement();
+    const teachersDashboardCard: DashboardCardElement = new DashboardCardElement();
     const coursesDashboardCard: DashboardCardElement = new DashboardCardElement();
-    const enrollmentsDashboardCard: DashboardCardElement = new DashboardCardElement();
 
     studentsDashboardCard.label = "alumnos";
     studentsDashboardCard.total = this.totalStudents;
     studentsDashboardCard.action = "/student";
 
+    teachersDashboardCard.label = "maestros";
+    teachersDashboardCard.total = this.totalTeachers;
+    teachersDashboardCard.action = "/teacher";
+
     coursesDashboardCard.label = "materias";
     coursesDashboardCard.total = this.totalCourses;
     coursesDashboardCard.action = "/course";
 
-    enrollmentsDashboardCard.label = "Ciclo";
-    enrollmentsDashboardCard.total = 7;
-    enrollmentsDashboardCard.action = "/enrollment";
-
-    return [studentsDashboardCard, coursesDashboardCard, enrollmentsDashboardCard];
+    return [studentsDashboardCard, teachersDashboardCard, coursesDashboardCard];
   }
 
 }

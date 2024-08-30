@@ -10,7 +10,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 })
 export class TeacherEditComponent implements OnInit {
 
-  teacherNewForm: FormGroup;
+  teacherEditForm: FormGroup;
 
   constructor(
     private teacherService: TeacherService,
@@ -18,7 +18,7 @@ export class TeacherEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
-    this.teacherNewForm = this.formBuilder.group({
+    this.teacherEditForm = this.formBuilder.group({
       username: new FormControl({value: data.username, disabled: true}),
       password: [''],
       profile: this.formBuilder.group({
@@ -35,13 +35,13 @@ export class TeacherEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.teacherNewForm.patchValue(this.data);
+    this.teacherEditForm.patchValue(this.data);
   }
 
   onSubmit() {
-    if (this.teacherNewForm.valid) {
+    if (this.teacherEditForm.valid) {
       if (this.data) {
-        this.teacherService.updateTeacher(this.data.id, this.teacherNewForm.getRawValue()).subscribe({
+        this.teacherService.updateTeacher(this.data.id, this.teacherEditForm.getRawValue()).subscribe({
           next: (val: any) => {
             alert('Profesor actualizado correctamente');
             this.dialogRef.close(true);

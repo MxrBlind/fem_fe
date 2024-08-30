@@ -36,6 +36,9 @@ import {
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {FlexModule} from "@angular/flex-layout";
+import { EnrollmentListComponent } from './features/enrollment/components/enrollment-list/enrollment-list.component';
+import { EnrollmentNewComponent } from './features/enrollment/components/enrollment-new/enrollment-new.component';
+import { EnrollmentEditComponent } from './features/enrollment/components/enrollment-edit/enrollment-edit.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import {FlexModule} from "@angular/flex-layout";
     TeacherEditComponent,
     CourseListComponent,
     CourseNewComponent,
-    CourseEditComponent
+    CourseEditComponent,
+    EnrollmentListComponent,
+    EnrollmentNewComponent,
+    EnrollmentEditComponent
   ],
   imports: [
     BrowserModule,

@@ -49,9 +49,7 @@ export class CourseListComponent implements OnInit {
   }
 
   openEditCourseDialog(data: any) {
-    const dialogRef = this.dialog.open(CourseEditComponent, {
-      data,
-    });
+    const dialogRef = this.dialog.open(CourseEditComponent, {data});
 
     dialogRef.afterClosed().subscribe({
       next: (val: any) => {
@@ -95,7 +93,7 @@ export class CourseListComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-      },
+      }
     });
   }
 

@@ -1,5 +1,5 @@
 export class DashboardCardElement {
-  label: string = "";
+  label: String = "";
   total: number = 0;
-  action: string = "";
+  action: String = "";
 }

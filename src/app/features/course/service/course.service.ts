@@ -26,7 +26,7 @@ export class CourseService {
   }
 
   updateCourse(id: number, data: any) {
-    return this.httpClient.put(this.baseUrl + "/api/course/" + id, data);
+    return this.httpClient.put(this.baseUrl + "/api/course/" + id + "?includeDependencies=true", data);
   }
 
   deleteCourse(id: number) {
