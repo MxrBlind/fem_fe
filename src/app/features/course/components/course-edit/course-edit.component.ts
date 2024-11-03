@@ -13,6 +13,7 @@ export class CourseEditComponent implements OnInit {
   courseEditForm: FormGroup;
   teachers: any;
   categories: any;
+  levels: any;
 
   constructor(
     private courseService: CourseService,
@@ -28,6 +29,9 @@ export class CourseEditComponent implements OnInit {
         id: ['', Validators.required],
       }),
       category: this.formBuilder.group({
+        id: ['', Validators.required],
+      }),
+      level: this.formBuilder.group({
         id: ['', Validators.required],
       })
     })
@@ -46,6 +50,15 @@ export class CourseEditComponent implements OnInit {
     this.courseService.getTeachers().subscribe({
       next: (res) => {
         this.teachers = res;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+
+    this.courseService.getLevels().subscribe({
+      next: (res) => {
+        this.levels = res;
       },
       error: (err) => {
         console.log(err);

@@ -24,6 +24,7 @@ export class CourseListComponent implements OnInit {
     'credits',
     'fullName',
     'category.title',
+    'level.title',
     'action'
   ];
   dialog: any;

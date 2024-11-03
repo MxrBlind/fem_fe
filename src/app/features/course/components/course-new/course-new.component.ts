@@ -11,9 +11,9 @@ import {MatDialogRef} from "@angular/material/dialog";
 export class CourseNewComponent implements OnInit {
 
   courseNewForm: FormGroup;
-
   teachers: any;
   categories: any;
+  levels: any;
 
   constructor(
     private courseService: CourseService,
@@ -28,6 +28,9 @@ export class CourseNewComponent implements OnInit {
         id: ['', Validators.required],
       }),
       category: this.formBuilder.group({
+        id: ['', Validators.required],
+      }),
+      level: this.formBuilder.group({
         id: ['', Validators.required],
       })
     })
@@ -51,6 +54,16 @@ export class CourseNewComponent implements OnInit {
         console.log(err);
       }
     });
+
+    this.courseService.getLevels().subscribe({
+      next: (res) => {
+        this.levels = res;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+
   }
 
   onSubmit() {

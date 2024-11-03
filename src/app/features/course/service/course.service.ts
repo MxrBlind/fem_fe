@@ -40,4 +40,8 @@ export class CourseService {
   getTeachers(): Observable<any> {
     return this.httpClient.get(this.baseUrl + '/api/user?role=ROLE_TEACHER');
   }
+
+  getLevels(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/api/level');
+  }
 }
