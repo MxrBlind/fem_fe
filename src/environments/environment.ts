@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://fem_be.render.com:8080'
+  apiUrl: 'https://fem-be-0-0-1.onrender.com'
 };
