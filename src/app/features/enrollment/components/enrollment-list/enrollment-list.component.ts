@@ -22,8 +22,8 @@ export class EnrollmentListComponent implements OnInit {
     'id',
     'fullName',
     'profile.church',
-    'course.description',
-    'course.category.title',
+    'course.title',
+    'course.category',
     'action'
   ];
   dialog: any;

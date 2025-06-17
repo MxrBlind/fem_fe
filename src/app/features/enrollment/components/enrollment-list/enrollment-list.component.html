@@ -27,13 +27,13 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Iglesia:</th>
         <td mat-cell *matCellDef="let row">{{ row.student.profile.church }}</td>
       </ng-container>
-      <ng-container matColumnDef="course.description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Materia:</th>
-        <td mat-cell *matCellDef="let row">{{ row.course.description }}</td>
+      <ng-container matColumnDef="course.title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Curso:</th>
+        <td mat-cell *matCellDef="let row">{{ row.course.subject.description }}</td>
       </ng-container>
-      <ng-container matColumnDef="course.category.title">
+      <ng-container matColumnDef="course.category">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoría:</th>
-        <td mat-cell *matCellDef="let row">{{ row.course.category.title }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.course.subject.category.title }}</td>
       </ng-container>
 
       <ng-container matColumnDef="action">
