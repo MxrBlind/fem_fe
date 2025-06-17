@@ -1,73 +1,71 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
+import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
-import {CourseService} from "../../service/course.service";
+import {SubjectService} from "../../service/subject-service";
 import {MatDialog} from "@angular/material/dialog";
-import {CourseNewComponent} from "../course-new/course-new.component";
-import {CourseEditComponent} from "../course-edit/course-edit.component";
+import {SubjectEditComponent} from "../subject-edit/subject-edit.component";
+import {SubjectNewComponent} from "../subject-new/subject-new/subject-new.component";
 
 @Component({
-  selector: 'app-course-list',
-  templateUrl: './course-list.component.html',
-  styleUrl: './course-list.component.css'
+  selector: 'app-subject-list',
+  templateUrl: './subject-list.component.html',
+  styleUrl: './subject-list.component.css'
 })
-export class CourseListComponent implements OnInit {
+export class SubjectListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  courseService: CourseService;
+  subjectService: SubjectService;
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = [
     'id',
-    'description',
-    'credits',
-    'fullName',
+    'title',
     'category.title',
     'level.title',
     'action'
   ];
   dialog: any;
 
-  constructor(courseService: CourseService, dialog: MatDialog) {
+  constructor(subjectService: SubjectService, dialog: MatDialog) {
     this.dialog = dialog;
-    this.courseService = courseService;
+    this.subjectService = subjectService;
   }
 
   ngOnInit(): void {
-    this.getCourseList();
+    this.getSubjectList();
   }
 
-  openNewCourseDialog() {
-    const dialogRef = this.dialog.open(CourseNewComponent);
+  openNewSubjectDialog() {
+    const dialogRef = this.dialog.open(SubjectNewComponent);
     dialogRef.afterClosed().subscribe({
       next: (val: any) => {
         if (val) {
-          this.getCourseList();
+          this.getSubjectList();
         }
       }
     });
   }
 
-  openEditCourseDialog(data: any) {
-    const dialogRef = this.dialog.open(CourseEditComponent, {data});
+  openEditSubjectDialog(data: any) {
+    const dialogRef = this.dialog.open(SubjectEditComponent, {data});
 
     dialogRef.afterClosed().subscribe({
       next: (val: any) => {
         if (val) {
-          this.getCourseList();
+          this.getSubjectList();
         }
       }
     });
   }
 
-  deleteCourse(id: number) {
-    let confirm = window.confirm("¿Estas seguro de borrar este curso?");
+  deleteSubject(id: number) {
+    let confirm = window.confirm("¿Estas seguro de borrar esta materia?");
     if (confirm) {
-      this.courseService.deleteCourse(id).subscribe({
+      this.subjectService.deleteSubject(id).subscribe({
         next: (res) => {
-          alert('Curso eliminado');
-          this.getCourseList();
+          alert('Materia eliminada');
+          this.getSubjectList();
         },
         error: (err) => {
           console.log(err);
@@ -84,8 +82,8 @@ export class CourseListComponent implements OnInit {
     }
   }
 
-  private getCourseList() {
-    this.courseService.getCourses().subscribe({
+  private getSubjectList() {
+    this.subjectService.getSubjects().subscribe({
       next: (res) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.sort = this.sort;

@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
     teachersDashboardCard.total = this.totalTeachers;
     teachersDashboardCard.action = "/teacher";
 
-    coursesDashboardCard.label = "materias";
+    coursesDashboardCard.label = "cursos";
     coursesDashboardCard.total = this.totalCourses;
     coursesDashboardCard.action = "/course";
 

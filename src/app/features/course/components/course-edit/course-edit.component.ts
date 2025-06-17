@@ -11,9 +11,9 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 export class CourseEditComponent implements OnInit {
 
   courseEditForm: FormGroup;
+  subjects: any;
   teachers: any;
-  categories: any;
-  levels: any;
+  cycle: any;
 
   constructor(
     private courseService: CourseService,
@@ -22,25 +22,25 @@ export class CourseEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.courseEditForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
+      id: ['', Validators.required],
       credits: ['', Validators.required],
+      subject: this.formBuilder.group({
+        id: ['', Validators.required]
+      }),
       teacher: this.formBuilder.group({
-        id: ['', Validators.required],
+        id: ['', Validators.required]
       }),
-      category: this.formBuilder.group({
+      cycle: this.formBuilder.group({
         id: ['', Validators.required],
-      }),
-      level: this.formBuilder.group({
-        id: ['', Validators.required],
+        description: [{value: '', disabled: true}, Validators.required]
       })
     })
   }
 
   ngOnInit(): void {
-    this.courseService.getCategories().subscribe({
+    this.courseService.getSubjects().subscribe({
       next: (res) => {
-        this.categories = res;
+        this.subjects = res;
       },
       error: (err) => {
         console.log(err);
@@ -56,9 +56,9 @@ export class CourseEditComponent implements OnInit {
       }
     });
 
-    this.courseService.getLevels().subscribe({
+    this.courseService.getCurrentCycle().subscribe({
       next: (res) => {
-        this.levels = res;
+        this.cycle = res;
       },
       error: (err) => {
         console.log(err);
@@ -69,17 +69,15 @@ export class CourseEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.courseEditForm.value);
     if (this.courseEditForm.valid) {
       this.courseService.updateCourse(this.data.id, this.courseEditForm.getRawValue()).subscribe({
         next: (val: any) => {
-          alert('¡Materia actualizada exitosamente!');
           this.courseEditForm.reset();
           this.dialogRef.close(true);
         },
         error: (err: any) => {
           console.error(err);
-          alert("Error al actualizar la materia!");
+          alert("¡Error al actualizar el curso!");
         },
       });
     }

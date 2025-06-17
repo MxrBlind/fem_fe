@@ -33,15 +33,15 @@ export class CourseService {
     return this.httpClient.delete(this.baseUrl + "/api/course/" + id);
   }
 
-  getCategories(): Observable<any> {
-    return this.httpClient.get(this.baseUrl + '/api/category');
+  getSubjects(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/api/subject');
   }
 
   getTeachers(): Observable<any> {
     return this.httpClient.get(this.baseUrl + '/api/user?role=ROLE_TEACHER');
   }
 
-  getLevels(): Observable<any> {
-    return this.httpClient.get(this.baseUrl + '/api/level');
+  getCurrentCycle(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/api/cycle/current');
   }
 }

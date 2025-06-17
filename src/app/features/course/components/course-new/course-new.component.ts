@@ -11,35 +11,36 @@ import {MatDialogRef} from "@angular/material/dialog";
 export class CourseNewComponent implements OnInit {
 
   courseNewForm: FormGroup;
+  subjects: any;
   teachers: any;
-  categories: any;
-  levels: any;
+  cycle: any;
 
   constructor(
     private courseService: CourseService,
     private dialogRef: MatDialogRef<CourseNewComponent>,
     private formBuilder: FormBuilder
   ) {
+
     this.courseNewForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
       credits: ['', Validators.required],
       teacher: this.formBuilder.group({
-        id: ['', Validators.required],
+        id: ['', Validators.required]
       }),
-      category: this.formBuilder.group({
-        id: ['', Validators.required],
+      subject: this.formBuilder.group({
+        id: ['', Validators.required]
       }),
-      level: this.formBuilder.group({
+      cycle: this.formBuilder.group({
         id: ['', Validators.required],
+        description: [{value: '', disabled: true}, Validators.required]
+
       })
-    })
+    });
   }
 
   ngOnInit(): void {
-    this.courseService.getCategories().subscribe({
+    this.courseService.getSubjects().subscribe({
       next: (res) => {
-        this.categories = res;
+        this.subjects = res;
       },
       error: (err) => {
         console.log(err);
@@ -55,9 +56,11 @@ export class CourseNewComponent implements OnInit {
       }
     });
 
-    this.courseService.getLevels().subscribe({
+    this.courseService.getCurrentCycle().subscribe({
       next: (res) => {
-        this.levels = res;
+        this.cycle = res;
+        this.courseNewForm.patchValue({cycle: res});
+        this.courseNewForm.markAsPristine();
       },
       error: (err) => {
         console.log(err);
@@ -67,7 +70,6 @@ export class CourseNewComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.courseNewForm.value);
     if (this.courseNewForm.valid) {
       this.courseService.createCourse(this.courseNewForm.getRawValue()).subscribe({
         next: (val: any) => {
@@ -80,6 +82,9 @@ export class CourseNewComponent implements OnInit {
           alert("Error al crear la materia!");
         },
       });
+    } else {
+      //TODO: Handle errors
+      console.log(this.courseNewForm.errors);
     }
   }
 

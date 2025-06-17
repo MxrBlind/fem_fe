@@ -18,7 +18,7 @@ export class EnrollmentNewComponent implements OnInit {
     private enrollmentService: EnrollmentService,
     private dialogRef: MatDialogRef<EnrollmentNewComponent>,
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.enrollmentNewForm = this.formBuilder.group({
       student: this.formBuilder.group({

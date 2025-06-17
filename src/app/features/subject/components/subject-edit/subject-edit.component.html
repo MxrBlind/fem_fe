@@ -1,0 +1,45 @@
+<div mat-dialog-title>
+  <h1>Editar una materia</h1>
+</div>
+<form [formGroup]="subjectEditForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Título de materia:</mat-label>
+        <input matInput type="text" placeholder="i.e Teología Sistemática I" formControlName="title">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción:</mat-label>
+        <input matInput type="text" placeholder="i.e Teología Sistemática I" formControlName="description">
+      </mat-form-field>
+    </div>
+    <div formGroupName="category">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Categoría:</mat-label>
+          <mat-select formControlName="id">
+            @for (category of categories; track category) {
+              <mat-option [value]="category.id">{{ category.title }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div formGroupName="level">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nivel:</mat-label>
+          <mat-select formControlName="id">
+            @for (level of levels; track level) {
+              <mat-option [value]="level.id">{{ level.title }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="action-btns">
+    <button style="margin: 10px;" mat-raised-button color="accent" type="submit">Guardar</button>
+    <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancelar</button>
+  </div>
+</form>

@@ -37,20 +37,6 @@ export class StudentListComponent implements OnInit {
     this.getStudentList();
   }
 
-  private getStudentList() {
-    this.studentService.getStudents().subscribe({
-      next: (res) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-        console.log(res);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
   openNewStudentDialog() {
     const dialogRef = this.dialog.open(StudentNewComponent);
     dialogRef.afterClosed().subscribe({
@@ -63,9 +49,7 @@ export class StudentListComponent implements OnInit {
   }
 
   openEditStudentDialog(data: any) {
-    const dialogRef = this.dialog.open(StudentEditComponent, {
-      data,
-    });
+    const dialogRef = this.dialog.open(StudentEditComponent, {data});
 
     dialogRef.afterClosed().subscribe({
       next: (val: any) => {
@@ -97,6 +81,20 @@ export class StudentListComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  private getStudentList() {
+    this.studentService.getStudents().subscribe({
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+
   }
 
 }
