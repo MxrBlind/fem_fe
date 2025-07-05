@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatTableDataSource} from "@angular/material/table";
 import {EnrollmentNewComponent} from "../enrollment-new/enrollment-new.component";
 import {EnrollmentEditComponent} from "../enrollment-edit/enrollment-edit.component";
+import {jwtDecode} from "jwt-decode";
 
 @Component({
   selector: 'app-enrollment-list',
@@ -14,6 +15,7 @@ import {EnrollmentEditComponent} from "../enrollment-edit/enrollment-edit.compon
 })
 export class EnrollmentListComponent implements OnInit {
 
+  currentRole: string = "INVALID";
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   enrollmentService: EnrollmentService;
@@ -43,7 +45,17 @@ export class EnrollmentListComponent implements OnInit {
       error: (err) => {
         console.log(err);
       }
-    })
+    });
+
+    const currentToken = localStorage.getItem('token') ?? '';
+    if (currentToken != '') {
+      try {
+        const decodedToken: any = jwtDecode(currentToken);
+        this.currentRole = decodedToken.scopes[0].authority;
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
   }
 
   openNewEnrollmentDialog() {

@@ -8,6 +8,9 @@ import {EnrollmentListComponent} from "./features/enrollment/components/enrollme
 import {LoginComponent} from "./features/login/components/login/login.component";
 import {SubjectListComponent} from "./features/subject/components/subject-list/subject-list.component";
 import {CycleListComponent} from "./features/cycle/components/cycle-list/cycle-list.component";
+import {
+  CurrentCycleListComponent
+} from "./features/cycle/components/current-cycle-list/current-cycle-list/current-cycle-list.component";
 
 const routes: Routes = [
   {path: "", component: DashboardComponent},
@@ -17,6 +20,7 @@ const routes: Routes = [
   {path: "course", component: CourseListComponent},
   {path: "subject", component: SubjectListComponent},
   {path: "cycle", component: CycleListComponent},
+  {path: "cycle/current", component: CurrentCycleListComponent},
   {path: "enrollment", component: EnrollmentListComponent},
   {path: "login", component: LoginComponent}
 ];

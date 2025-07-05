@@ -9,8 +9,7 @@
           <mat-label>Estudiante:</mat-label>
           <mat-select formControlName="id">
             @for (student of students; track student) {
-              <mat-option [value]="student.id">{{student.profile.name}} {{student.profile.parentLastName}}
-              </mat-option>
+              <mat-option [value]="student.id">{{student.profile.name}} {{student.profile.parentLastName}}</mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -41,7 +40,7 @@
 
   </div>
   <div mat-dialog-actions class="action-btns">
-    <button style="margin: 10px;" mat-raised-button color="accent" type="submit">Guardar</button>
+    <button style="margin: 10px;" mat-raised-button color="basic" type="submit">Guardar</button>
     <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancelar</button>
   </div>
 </form>

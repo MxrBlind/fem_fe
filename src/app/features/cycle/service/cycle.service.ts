@@ -21,4 +21,24 @@ export class CycleService {
     return this.httpClient.get(this.baseUrl + '/api/course/cycle/' + cycleId);
   }
 
+  getAllCycles(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/api/cycle');
+  }
+
+  deleteCycle(cycleId: number): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + '/api/cycle/' + cycleId);
+  }
+
+  addCycle(cycle: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + '/api/cycle', cycle);
+  }
+
+  updateCycle(cycleId: number, cycle: any): Observable<any> {
+    return this.httpClient.put(this.baseUrl + '/api/cycle/' + cycleId, cycle);
+  }
+
+  getPrincipals(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/api/user?role=ROLE_TEACHER');
+  }
+
 }

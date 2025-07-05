@@ -1,0 +1,57 @@
+<div class="main-body">
+  <!-- The table header and add student -->
+  <mat-toolbar color="primary">
+    <span>Ciclos</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="basic" (click)="openNewCycleDialog()">Nuevo ciclo</button>
+  </mat-toolbar>
+
+  <!--The student details table -->
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+        <td mat-cell *matCellDef="let row"> {{row.id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+        <td mat-cell *matCellDef="let row">{{row.description}}</td>
+      </ng-container>
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de inicio</th>
+        <td mat-cell *matCellDef="let row">{{row.startDate | date:'mediumDate'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de fin</th>
+        <td mat-cell *matCellDef="let row"> {{row.endDate | date:'mediumDate'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="principal.fullName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Profesor</th>
+        <td mat-cell *matCellDef="let row">{{row.principal.profile.name}} {{row.principal.profile.parentLastName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Activo</th>
+        <td mat-cell *matCellDef="let row">{{row.active ? '&#10003;' : '&#10005;' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+        <td mat-cell *matCellDef="let row">
+            <span (click)="openEditCycleDialog(row)" class="action-icon" style="margin-right: 5px;">
+              <mat-icon color="primary">edit</mat-icon>
+            </span>
+          <span (click)="deleteCycle(row.id)" class="action-icon">
+              <mat-icon color="warn">delete</mat-icon>
+            </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Selecciona páginas de ciclos"></mat-paginator>
+  </div>
+</div>

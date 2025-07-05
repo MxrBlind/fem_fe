@@ -50,9 +50,9 @@ export class DashboardComponent implements OnInit {
 
     this.dashboardService.getCurrentCycle().subscribe({
       next: (res) => {
-        this.currentCycleName = res[0].description;
-        let startDate = new Date(res[0].startDate);
-        let endDate = new Date(res[0].endDate);
+        this.currentCycleName = res.description;
+        let startDate = new Date(res.startDate);
+        let endDate = new Date(res.endDate);
         let nowDate = new Date();
         let totalTime = endDate.getTime() - startDate.getTime();
         let currentTime = endDate.getTime() - nowDate.getTime();
@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
 
     coursesDashboardCard.label = "cursos";
     coursesDashboardCard.total = this.totalCourses;
-    coursesDashboardCard.action = "/course";
+    coursesDashboardCard.action = "/course/current";
 
     return [studentsDashboardCard, teachersDashboardCard, coursesDashboardCard];
   }

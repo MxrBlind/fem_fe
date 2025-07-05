@@ -1,15 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {jwtDecode} from "jwt-decode";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-dashboard-card',
-  templateUrl: './dashboard-card.component.html',
-  styleUrl: './dashboard-card.component.css'
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.css'
 })
-export class DashboardCardComponent implements OnInit {
+export class NavbarComponent implements OnInit {
 
-  @Input() cardElement: any;
   currentRole: string = "INVALID";
+
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
     const currentToken = localStorage.getItem('token') ?? '';
@@ -21,6 +25,13 @@ export class DashboardCardComponent implements OnInit {
         console.error("Error decoding token:", error);
       }
     }
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 
 }

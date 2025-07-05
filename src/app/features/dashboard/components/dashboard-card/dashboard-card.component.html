@@ -10,7 +10,7 @@
         </div>
       </div>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions *ngIf="currentRole === 'ROLE_ADMIN'">
       <button mat-button routerLink="{{cardElement.action}}">Administrar</button>
     </mat-card-actions>
   </mat-card>

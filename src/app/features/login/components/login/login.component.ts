@@ -29,7 +29,9 @@ export class LoginComponent {
           this.loginForm.reset();
           const tokenHeader = val.type + " " + val.token;
           localStorage.setItem('token', tokenHeader);
-          this.router.navigateByUrl("/");
+          this.router.navigate(['/']).then(() => {
+            window.location.reload();
+          });
         },
         error: (err: any) => {
           console.error(err);

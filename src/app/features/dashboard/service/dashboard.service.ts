@@ -22,7 +22,7 @@ export class DashboardService {
   }
 
   getCurrentCycle(): Observable<any> {
-    return this.httpClient.get(this.baseUrl + '/api/cycle');
+    return this.httpClient.get(this.baseUrl + '/api/cycle/current');
   }
 
 }

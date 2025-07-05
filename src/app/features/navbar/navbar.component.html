@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <span>FEM Manager</span>
+  <div class="spacer"></div>
+  <a mat-button routerLink="/">Inicio</a>
+  <a *ngIf="currentRole === 'ROLE_ADMIN'" mat-button routerLink="/cycle/current">Ciclo actual</a>
+  <a *ngIf="currentRole === 'ROLE_ADMIN' || currentRole === 'ROLE_TEACHER'" mat-button routerLink="/enrollment">Inscripciones</a>
+  <a *ngIf="currentRole === 'ROLE_ADMIN'" mat-button routerLink="/student">Estudiantes</a>
+  <a *ngIf="currentRole === 'ROLE_ADMIN'" mat-button routerLink="/teacher">Maestros</a>
+  <a *ngIf="currentRole === 'ROLE_ADMIN'" mat-button routerLink="/subject">Materias</a>
+  <a *ngIf="currentRole === 'ROLE_ADMIN'" mat-button routerLink="/cycle">Ciclos</a>
+  <a *ngIf="currentRole" mat-button (click)="logout()">Salir</a>
+</mat-toolbar>

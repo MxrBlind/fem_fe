@@ -9,7 +9,7 @@ import {
   DashboardCardComponent
 } from './features/dashboard/components/dashboard-card/dashboard-card.component';
 import {DashboardComponent} from './features/dashboard/components/dashboard/dashboard.component';
-import {NavbarComponent} from './features/navbar/navbar/navbar.component';
+import {NavbarComponent} from './features/navbar/navbar.component';
 
 import {StudentListComponent} from './features/student/components/student-list/student-list.component';
 import {StudentEditComponent} from './features/student/components/student-edit/student-edit.component';
@@ -42,9 +42,12 @@ import {EnrollmentEditComponent} from './features/enrollment/components/enrollme
 import {SubjectEditComponent} from './features/subject/components/subject-edit/subject-edit.component';
 import {SubjectListComponent} from './features/subject/components/subject-list/subject-list.component';
 import {CycleListComponent} from './features/cycle/components/cycle-list/cycle-list.component';
-import {AuthInterceptor} from "./features/common/authorization.interceptor";
+import {SubjectNewComponent} from './features/subject/components/subject-new/subject-new/subject-new.component';
+import {CurrentCycleListComponent} from './features/cycle/components/current-cycle-list/current-cycle-list/current-cycle-list.component';
+import {AuthInterceptor} from "./features/security/authorization.interceptor";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import { SubjectNewComponent } from './features/subject/components/subject-new/subject-new/subject-new.component';
+import { CycleNewComponent } from './features/cycle/components/cycle-new/cycle-new/cycle-new.component';
+import { CycleEditComponent } from './features/cycle/components/cycle-edit/cycle-edit/cycle-edit.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,10 @@ import { SubjectNewComponent } from './features/subject/components/subject-new/s
     SubjectEditComponent,
     SubjectListComponent,
     CycleListComponent,
-    SubjectNewComponent
+    SubjectNewComponent,
+    CurrentCycleListComponent,
+    CycleNewComponent,
+    CycleEditComponent
   ],
   imports: [
     BrowserModule,

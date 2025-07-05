@@ -3,7 +3,7 @@
   <mat-toolbar color="primary">
     <span>Ciclo actual: {{ currentCycleName }}</span>
     <span class="example-spacer"></span>
-    <button mat-raised-button color="accent" (click)="openNewEnrollmentDialog()">Nuevo registro</button>
+    <button *ngIf="currentRole === 'ROLE_ADMIN'" mat-raised-button color="basic" (click)="openNewEnrollmentDialog()">Nuevo registro</button>
   </mat-toolbar>
 
   <!-- The filter section -->
@@ -42,7 +42,7 @@
             <span (click)="openEditEnrollmentDialog(row)" class="action-icon" style="margin-right: 5px;">
               <mat-icon color="primary">edit</mat-icon>
             </span>
-          <span (click)="deleteEnrollment(row.id)" class="action-icon">
+          <span *ngIf="currentRole === 'ROLE_ADMIN'" (click)="deleteEnrollment(row.id)" class="action-icon">
               <mat-icon color="warn">delete</mat-icon>
             </span>
         </td>

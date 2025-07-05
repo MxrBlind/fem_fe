@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EnrollmentService} from "../../service/enrollment.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {jwtDecode} from "jwt-decode";
 
 @Component({
   selector: 'app-enrollment-edit',
@@ -51,6 +52,22 @@ export class EnrollmentEditComponent implements OnInit {
         console.log(err);
       }
     });
+
+    const currentToken = localStorage.getItem('token') ?? '';
+    if (currentToken != '') {
+      try {
+        const decodedToken: any = jwtDecode(currentToken);
+        const currentRole = decodedToken.scopes[0].authority;
+        if (currentRole === 'ROLE_TEACHER') {
+          this.enrollmentEditForm.get('student')?.disable();
+          this.enrollmentEditForm.get('course')?.disable();
+          this.enrollmentEditForm.get('scholarshipPercent')?.disable();
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+
   }
 
   onSubmit() {
