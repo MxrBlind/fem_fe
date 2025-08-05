@@ -48,6 +48,7 @@ import {AuthInterceptor} from "./features/security/authorization.interceptor";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import { CycleNewComponent } from './features/cycle/components/cycle-new/cycle-new/cycle-new.component';
 import { CycleEditComponent } from './features/cycle/components/cycle-edit/cycle-edit/cycle-edit.component';
+import {MatCheckbox} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -76,36 +77,37 @@ import { CycleEditComponent } from './features/cycle/components/cycle-edit/cycle
     CycleNewComponent,
     CycleEditComponent
   ],
-  imports: [
-    BrowserModule,
-    SharedModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatDatepicker,
-    MatDialogClose,
-    MatSelect,
-    MatSortModule,
-    MatOption,
-    MatTable,
-    MatColumnDef,
-    MatSort,
-    MatHeaderCell,
-    MatCell,
-    MatHeaderRow,
-    MatRow,
-    MatPaginator,
-    MatHeaderCellDef,
-    MatCellDef,
-    MatNoDataRow,
-    MatRowDef,
-    MatHeaderRowDef,
-    FlexModule,
-    MatDialogContent,
-    MatDialogTitle,
-    MatDialogActions
-  ],
+    imports: [
+        BrowserModule,
+        SharedModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        MatDatepickerInput,
+        MatDatepickerToggle,
+        MatDatepicker,
+        MatDialogClose,
+        MatSelect,
+        MatSortModule,
+        MatOption,
+        MatTable,
+        MatColumnDef,
+        MatSort,
+        MatHeaderCell,
+        MatCell,
+        MatHeaderRow,
+        MatRow,
+        MatPaginator,
+        MatHeaderCellDef,
+        MatCellDef,
+        MatNoDataRow,
+        MatRowDef,
+        MatHeaderRowDef,
+        FlexModule,
+        MatDialogContent,
+        MatDialogTitle,
+        MatDialogActions,
+        MatCheckbox
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

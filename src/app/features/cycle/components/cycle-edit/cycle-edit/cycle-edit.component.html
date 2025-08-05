@@ -15,12 +15,18 @@
         <mat-datepicker-toggle matIconSuffix [for]="pickerStart"></mat-datepicker-toggle>
         <mat-datepicker #pickerStart></mat-datepicker>
       </mat-form-field>
+    </div>
+    <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Fecha de término:</mat-label>
         <input matInput [matDatepicker]="pickerEnd" formControlName="endDate">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
         <mat-datepicker #pickerEnd></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput readonly="true" placeholder="Ciclo activo">
+        <mat-checkbox matSuffix formControlName="active"></mat-checkbox>
       </mat-form-field>
     </div>
     <div formGroupName="principal">

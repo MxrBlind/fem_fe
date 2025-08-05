@@ -26,7 +26,8 @@ export class CycleEditComponent implements OnInit {
       endDate: ['', Validators.required],
       principal: this.formBuilder.group({
         id: ['', Validators.required]
-      })
+      }),
+      active: [false, Validators.required]
     });
   }
 
