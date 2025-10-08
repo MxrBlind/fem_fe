@@ -27,7 +27,6 @@ export class TeacherNewComponent {
         motherLastName: ['', Validators.required],
         email: ['', Validators.required],
         birthDate: ['', Validators.required],
-        curp: ['', Validators.required],
         address: ['', Validators.required],
         church: ['', Validators.required]
       }),

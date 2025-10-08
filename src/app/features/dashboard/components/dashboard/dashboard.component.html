@@ -1,7 +1,20 @@
 <div class="container">
   <br>
-  <p>Progreso del ciclo actual {{ currentCycleName }}: <span>{{ currentProgress }}%</span></p>
-  <mat-progress-bar mode="determinate" value="{{ currentProgress }}"></mat-progress-bar>
+  <div class="container">
+    <!-- src/app/progress-box/progress-box.component.html -->
+    <mat-card class="progress-box">
+      <mat-card-header>
+        <mat-card-title class="title">Progreso del ciclo actual {{ currentCycleName }}:</mat-card-title>
+        <mat-card-subtitle>{{ currentProgress }}%</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="progress-row">
+          <mat-progress-bar mode="determinate" value="{{ currentProgress }}"></mat-progress-bar>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
   <br>
 
   <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="5.0%" fxLayoutAlign="center">
