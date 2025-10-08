@@ -40,7 +40,7 @@ export class EnrollmentListComponent implements OnInit {
     this.getEnrollmentList();
     this.enrollmentService.getCurrentCycle().subscribe({
       next: (res) => {
-        this.currentCycleName = res[0].description;
+        this.currentCycleName = res.description;
       },
       error: (err) => {
         console.log(err);
