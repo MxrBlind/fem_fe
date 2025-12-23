@@ -49,6 +49,8 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import { CycleNewComponent } from './features/cycle/components/cycle-new/cycle-new/cycle-new.component';
 import { CycleEditComponent } from './features/cycle/components/cycle-edit/cycle-edit/cycle-edit.component';
 import {MatCheckbox} from "@angular/material/checkbox";
+import { ProfileComponent } from './features/profile/components/profile-edit/profile.component';
+import { PasswordEditComponent } from './features/profile/components/password-edit/password-edit/password-edit.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import {MatCheckbox} from "@angular/material/checkbox";
     SubjectNewComponent,
     CurrentCycleListComponent,
     CycleNewComponent,
-    CycleEditComponent
+    CycleEditComponent,
+    ProfileComponent,
+    PasswordEditComponent
   ],
     imports: [
         BrowserModule,

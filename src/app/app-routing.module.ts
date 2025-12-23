@@ -11,6 +11,7 @@ import {CycleListComponent} from "./features/cycle/components/cycle-list/cycle-l
 import {
   CurrentCycleListComponent
 } from "./features/cycle/components/current-cycle-list/current-cycle-list/current-cycle-list.component";
+import {ProfileComponent} from "./features/profile/components/profile-edit/profile.component";
 
 const routes: Routes = [
   {path: "", component: DashboardComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: "cycle", component: CycleListComponent},
   {path: "cycle/current", component: CurrentCycleListComponent},
   {path: "enrollment", component: EnrollmentListComponent},
+  {path: "profile", component: ProfileComponent},
   {path: "login", component: LoginComponent}
 ];
 
