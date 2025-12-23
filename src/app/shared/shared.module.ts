@@ -47,6 +47,9 @@ import {
   MatCardTitle
 } from "@angular/material/card";
 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -91,7 +94,9 @@ import {
     MatDialogClose,
     MatSelect,
     MatOption,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatSliderModule,
@@ -106,7 +111,9 @@ import {
     MatCardTitle,
     MatCardSubtitle,
     MatCardContent,
-    MatCardActions
+    MatCardActions,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [provideAnimations()]
 })

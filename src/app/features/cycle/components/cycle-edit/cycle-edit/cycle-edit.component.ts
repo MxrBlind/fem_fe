@@ -27,7 +27,7 @@ export class CycleEditComponent implements OnInit {
       principal: this.formBuilder.group({
         id: ['', Validators.required]
       }),
-      active: [false, Validators.required]
+      current: [false, Validators.required]
     });
   }
 

@@ -24,7 +24,7 @@ export class CycleListComponent implements OnInit {
     'startDate',
     'endDate',
     'principal.fullName',
-    'active',
+    'current',
     'action'
   ];
   dialog: any;
@@ -50,7 +50,7 @@ export class CycleListComponent implements OnInit {
   }
 
   deleteCycle(id: number) {
-    let confirm = window.confirm("¿Estas seguro de borrar este ciclo?");
+    let confirm = window.confirm("¿Estás seguro de borrar este ciclo?");
     if (confirm) {
       this.cycleService.deleteCycle(id).subscribe({
         next: (res) => {
