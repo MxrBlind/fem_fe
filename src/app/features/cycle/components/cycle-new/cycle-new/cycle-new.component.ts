@@ -20,7 +20,6 @@ export class CycleNewComponent  implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.cycleNewForm = this.formBuilder.group({
-      id: ['', Validators.required],
       description: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],

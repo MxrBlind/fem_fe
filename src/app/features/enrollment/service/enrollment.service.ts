@@ -33,8 +33,8 @@ export class EnrollmentService {
     return this.httpClient.get(this.baseUrl + '/api/user?role=ROLE_STUDENT');
   }
 
-  getCourses(): Observable<any> {
-    return this.httpClient.get(this.baseUrl + '/api/course');
+  getCoursesByCycle(id: number): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/api/course/cycle/' + id);
   }
 
   getCurrentCycle(): Observable<any> {

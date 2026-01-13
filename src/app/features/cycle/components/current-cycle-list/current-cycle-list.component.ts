@@ -1,12 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-import {CycleService} from "../../../service/cycle.service";
-import {CourseService} from "../../../../course/service/course.service";
+import {CycleService} from "../../service/cycle.service";
+import {CourseService} from "../../../course/service/course.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
-import {CourseEditComponent} from "../../../../course/components/course-edit/course-edit.component";
-import {CourseNewComponent} from "../../../../course/components/course-new/course-new.component";
+import {CourseEditComponent} from "../../../course/components/course-edit/course-edit.component";
+import {CourseNewComponent} from "../../../course/components/course-new/course-new.component";
 import {switchMap} from "rxjs";
 
 @Component({
@@ -49,7 +49,7 @@ export class CurrentCycleListComponent implements OnInit {
     dialogRef.afterClosed().subscribe({
       next: (val: any) => {
         if (val) {
-          this.getCourseList();
+          this.getCurrentCycle();
         }
       }
     });
@@ -61,7 +61,7 @@ export class CurrentCycleListComponent implements OnInit {
       this.courseService.deleteCourse(id).subscribe({
         next: (res) => {
           alert('curso eliminado');
-          this.getCourseList();
+          this.getCurrentCycle();
         },
         error: (err) => {
           console.log(err);
@@ -75,7 +75,7 @@ export class CurrentCycleListComponent implements OnInit {
     dialogRef.afterClosed().subscribe({
       next: (val: any) => {
         if (val) {
-          this.getCourseList();
+          this.getCurrentCycle();
         }
       }
     });

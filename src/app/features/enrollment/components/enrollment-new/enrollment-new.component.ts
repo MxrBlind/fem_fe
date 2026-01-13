@@ -57,7 +57,7 @@ export class EnrollmentNewComponent implements OnInit {
       }
     });
 
-    this.enrollmentService.getCourses().subscribe({
+    this.enrollmentService.getCoursesByCycle(this.data.currentCycleId).subscribe({
       next: (res) => {
         this.courses = res;
       },

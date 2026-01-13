@@ -30,6 +30,7 @@ export class EnrollmentListComponent implements OnInit {
   ];
   dialog: any;
   currentCycleName: any;
+  currentCycleId: number = 0;
 
   constructor(enrollmentService: EnrollmentService, dialog: MatDialog) {
     this.dialog = dialog;
@@ -39,8 +40,9 @@ export class EnrollmentListComponent implements OnInit {
   ngOnInit(): void {
     this.getEnrollmentList();
     this.enrollmentService.getCurrentCycle().subscribe({
-      next: (res) => {
-        this.currentCycleName = res.description;
+      next: (cycle) => {
+        this.currentCycleName = cycle.description;
+        this.currentCycleId = cycle.id;
       },
       error: (err) => {
         console.log(err);
@@ -59,7 +61,7 @@ export class EnrollmentListComponent implements OnInit {
   }
 
   openNewEnrollmentDialog() {
-    const dialogRef = this.dialog.open(EnrollmentNewComponent);
+    const dialogRef = this.dialog.open(EnrollmentNewComponent, {data: {currentCycleId: this.currentCycleId}});
     dialogRef.afterClosed().subscribe({
       next: (val: any) => {
         if (val) {
@@ -70,6 +72,7 @@ export class EnrollmentListComponent implements OnInit {
   }
 
   openEditEnrollmentDialog(data: any) {
+    data.currentCycleId = this.currentCycleId;
     const dialogRef = this.dialog.open(EnrollmentEditComponent, {data});
     dialogRef.afterClosed().subscribe({
       next: (val: any) => {

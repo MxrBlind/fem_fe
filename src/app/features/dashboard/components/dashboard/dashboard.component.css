@@ -1,0 +1,17 @@
+.progress-card {
+
+  max-width: 50vw;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .progress-card {
+    max-width: 95vw;
+  }
+}
+
+.progress-box .progress-row {
+  padding: 8px 16px;
+}

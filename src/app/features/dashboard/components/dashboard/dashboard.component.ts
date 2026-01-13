@@ -55,8 +55,8 @@ export class DashboardComponent implements OnInit {
         let endDate = new Date(res.endDate);
         let nowDate = new Date();
         let totalTime = endDate.getTime() - startDate.getTime();
-        let currentTime = endDate.getTime() - nowDate.getTime();
-        this.currentProgress = Math.round((currentTime / totalTime) * 100) ;
+        let currentTime = nowDate.getTime() - startDate.getTime();
+        this.currentProgress = Math.round((currentTime / totalTime) * 100);
       },
       error: (err) => {
         console.log(err);

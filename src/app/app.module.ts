@@ -43,7 +43,7 @@ import {SubjectEditComponent} from './features/subject/components/subject-edit/s
 import {SubjectListComponent} from './features/subject/components/subject-list/subject-list.component';
 import {CycleListComponent} from './features/cycle/components/cycle-list/cycle-list.component';
 import {SubjectNewComponent} from './features/subject/components/subject-new/subject-new/subject-new.component';
-import {CurrentCycleListComponent} from './features/cycle/components/current-cycle-list/current-cycle-list/current-cycle-list.component';
+import {CurrentCycleListComponent} from './features/cycle/components/current-cycle-list/current-cycle-list.component';
 import {AuthInterceptor} from "./features/security/authorization.interceptor";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import { CycleNewComponent } from './features/cycle/components/cycle-new/cycle-new/cycle-new.component';

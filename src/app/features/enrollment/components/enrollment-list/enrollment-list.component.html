@@ -1,9 +1,9 @@
 <div class="main-body">
   <!-- The table header and add enrollment -->
   <mat-toolbar color="primary">
-    <span>Ciclo actual: {{ currentCycleName }}</span>
+    <span>Inscripciones del ciclo actual: {{ currentCycleName }}</span>
     <span class="example-spacer"></span>
-    <button *ngIf="currentRole === 'ROLE_ADMIN'" mat-raised-button color="basic" (click)="openNewEnrollmentDialog()">Nuevo registro</button>
+    <button *ngIf="currentRole === 'ROLE_ADMIN'" mat-raised-button color="basic" (click)="openNewEnrollmentDialog()">Nueva inscripción</button>
   </mat-toolbar>
 
   <!-- The filter section -->

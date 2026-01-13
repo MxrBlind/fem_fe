@@ -10,7 +10,7 @@ import {SubjectListComponent} from "./features/subject/components/subject-list/s
 import {CycleListComponent} from "./features/cycle/components/cycle-list/cycle-list.component";
 import {
   CurrentCycleListComponent
-} from "./features/cycle/components/current-cycle-list/current-cycle-list/current-cycle-list.component";
+} from "./features/cycle/components/current-cycle-list/current-cycle-list.component";
 import {ProfileComponent} from "./features/profile/components/profile-edit/profile.component";
 
 const routes: Routes = [

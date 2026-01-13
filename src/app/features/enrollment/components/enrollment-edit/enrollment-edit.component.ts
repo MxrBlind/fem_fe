@@ -44,7 +44,7 @@ export class EnrollmentEditComponent implements OnInit {
       }
     });
 
-    this.enrollmentService.getCourses().subscribe({
+    this.enrollmentService.getCoursesByCycle(this.data.currentCycleId).subscribe({
       next: (res) => {
         this.courses = res;
       },
@@ -75,7 +75,7 @@ export class EnrollmentEditComponent implements OnInit {
       if (this.data) {
         this.enrollmentService.updateEnrollment(this.data.id, this.enrollmentEditForm.getRawValue()).subscribe({
           next: (val: any) => {
-            alert('Registro actualizado correctamente');
+            alert('Inscripción actualizada correctamente');
             this.dialogRef.close(true);
           }
         });
