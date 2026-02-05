@@ -20,7 +20,7 @@ export class SubjectListComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = [
     'id',
-    'title',
+    'description',
     'category.title',
     'level.title',
     'action'
