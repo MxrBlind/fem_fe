@@ -6,6 +6,12 @@
     <button mat-raised-button color="basic" (click)="openNewCourseDialog()">Nuevo curso</button>
   </mat-toolbar>
 
+  <!-- The filter section -->
+  <mat-form-field aria-haspopup="outline">
+    <mat-label>Filtrar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="i.e. Teología" #input>
+  </mat-form-field>
+
   <!--The student details table -->
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" matSort>
@@ -49,8 +55,12 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
+      <!-- This row will be shown when there is no matching data.-->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">No hay coincidencias con "{{ input.value }}"</td>
+      </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Selecciona páginas de cursos"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" pageSize="25" aria-label="Selecciona páginas de cursos"></mat-paginator>
   </div>
 </div>
