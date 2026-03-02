@@ -53,6 +53,7 @@ import { CycleEditComponent } from './features/cycle/components/cycle-edit/cycle
 import { MatCheckbox } from "@angular/material/checkbox";
 import { ProfileComponent } from './features/profile/components/profile-edit/profile.component';
 import { PasswordEditComponent } from './features/profile/components/password-edit/password-edit/password-edit.component';
+import { GradeListComponent } from './features/grade/components/grade-list/grade-list.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { PasswordEditComponent } from './features/profile/components/password-ed
     CycleNewComponent,
     CycleEditComponent,
     ProfileComponent,
-    PasswordEditComponent
+    PasswordEditComponent,
+    GradeListComponent
   ],
   imports: [
     BrowserModule,

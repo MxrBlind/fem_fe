@@ -8,6 +8,7 @@
   <a *ngIf="currentRole === 'ROLE_ADMIN'" mat-button routerLink="/teacher">Maestros</a>
   <a *ngIf="currentRole === 'ROLE_ADMIN'" mat-button routerLink="/subject">Materias</a>
   <a *ngIf="currentRole === 'ROLE_ADMIN'" mat-button routerLink="/cycle">Ciclos</a>
+  <a *ngIf="currentRole === 'ROLE_STUDENT'" mat-button routerLink="/grade">Calificaciones</a>
   <a *ngIf="currentRole" mat-button routerLink="/profile">Mi perfil</a>
   <a *ngIf="currentRole" mat-button (click)="logout()">Salir</a>
 </mat-toolbar>

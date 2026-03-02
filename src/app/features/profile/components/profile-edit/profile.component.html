@@ -2,7 +2,7 @@
   <div class="main-body">
     <mat-card class="mat-elevation-z5">
       <mat-card-header>
-        <mat-card-title>Mi perfil: {{ currentUser.username }}</mat-card-title>
+        <mat-card-title>Mi perfil: {{ currentUser?.username }}</mat-card-title>
         <mat-card-subtitle>Actualizar mi información</mat-card-subtitle>
       </mat-card-header>
 
@@ -44,7 +44,7 @@
 
             <div mat-dialog-actions class="action-btns">
               <button mat-raised-button color="warn" type="submit">Guardar</button>
-              <button mat-raised-button color="basic" type="button" (click)="openNewPasswordDialog(currentUser.id)">Cambiar password
+              <button mat-raised-button color="basic" type="button" (click)="openNewPasswordDialog(currentUser?.id)">Cambiar password
               </button>
             </div>
           </div>

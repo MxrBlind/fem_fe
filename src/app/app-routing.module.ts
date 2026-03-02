@@ -12,6 +12,7 @@ import {
   CurrentCycleListComponent
 } from "./features/cycle/components/current-cycle-list/current-cycle-list.component";
 import {ProfileComponent} from "./features/profile/components/profile-edit/profile.component";
+import {GradeListComponent} from "./features/grade/components/grade-list/grade-list.component";
 
 const routes: Routes = [
   {path: "", component: DashboardComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: "cycle", component: CycleListComponent},
   {path: "cycle/current", component: CurrentCycleListComponent},
   {path: "enrollment", component: EnrollmentListComponent},
+  {path: "grade", component: GradeListComponent},
   {path: "profile", component: ProfileComponent},
   {path: "login", component: LoginComponent}
 ];

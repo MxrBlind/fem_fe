@@ -24,7 +24,7 @@ export class CurrentCycleListComponent implements OnInit, AfterViewInit {
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = [
     'id',
-    'subject.title',
+    'subject.description',
     'credits',
     'teacher.fullName',
     'category.title',

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +26,13 @@ export class ProfileService {
     return this.httpClient.put(this.baseUrl + "/api/user/" + id + "/profile/password", data);
   }
 
+  getCurrentUserId(): Observable<number> {
+    return this.getCurrentUserProfile().pipe(
+      map((user: any) => {
+        return (user && user.id) ? user.id : 0;
+      })
+    );
+  }
+
 }
+

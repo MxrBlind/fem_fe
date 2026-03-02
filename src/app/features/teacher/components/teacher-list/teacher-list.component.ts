@@ -160,7 +160,6 @@ export class TeacherListComponent implements OnInit, AfterViewInit {
 
         if (this.paginator) this.dataSource.paginator = this.paginator;
         if (this.sort) this.dataSource.sort = this.sort;
-        console.log(res);
       },
       error: (err) => {
         console.log(err);
