@@ -41,7 +41,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Certificados</th>
         <td mat-cell *matCellDef="let row">
-            <button mat-icon-button color="primary" (click)="downloadCertificate(row)" [disabled]="row.active" aria-label="Descargar certificado">
+            <button mat-icon-button color="primary" (click)="downloadCertificate(row)" [disabled]="row.active" aria-label="Descarga certificado">
               <mat-icon>download</mat-icon>
             </button>
         </td>
@@ -51,7 +51,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" [attr.colspan]="displayedColumns.length">No hay datos</td>
+        <td class="mat-cell" [attr.colspan]="displayedColumns.length">No hay información</td>
       </tr>
     </table>
 
