@@ -15,11 +15,7 @@ export class LoginService {
   }
 
   loginUser(data: any): Observable<any> {
-    return this.httpClient.post(this.baseUrl + '/token', JSON.stringify(data), {headers: this.headers});
-  }
-
-  me(): Observable<any> {
-    return this.httpClient.get(this.baseUrl + '/me');
+    return this.httpClient.post(this.baseUrl + '/public/token', JSON.stringify(data), {headers: this.headers});
   }
 
 }
