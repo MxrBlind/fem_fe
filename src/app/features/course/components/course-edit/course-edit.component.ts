@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CourseService} from "../../service/course.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-course-edit',
@@ -20,6 +21,7 @@ export class CourseEditComponent implements OnInit {
     private dialogRef: MatDialogRef<CourseEditComponent>,
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private toast: ToastService,
   ) {
     this.courseEditForm = this.formBuilder.group({
       id: ['', Validators.required],
@@ -77,7 +79,7 @@ export class CourseEditComponent implements OnInit {
         },
         error: (err: any) => {
           console.error(err);
-          alert("¡Error al actualizar el curso!");
+          this.toast.error("¡Error al actualizar el curso!");
         },
       });
     }

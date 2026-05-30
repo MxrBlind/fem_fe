@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {EnrollmentService} from "../../service/enrollment.service";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-enrollment-new',
@@ -18,7 +19,8 @@ export class EnrollmentNewComponent implements OnInit {
     private enrollmentService: EnrollmentService,
     private dialogRef: MatDialogRef<EnrollmentNewComponent>,
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private toast: ToastService,
   ) {
     this.enrollmentNewForm = this.formBuilder.group({
       student: this.formBuilder.group({
@@ -35,13 +37,13 @@ export class EnrollmentNewComponent implements OnInit {
     if (this.enrollmentNewForm.valid) {
       this.enrollmentService.addEnrollment(this.enrollmentNewForm.getRawValue()).subscribe({
         next: (val: any) => {
-          alert('¡Registro creado exitosamente!');
+          this.toast.success('¡Registro creado exitosamente!');
           this.enrollmentNewForm.reset();
           this.dialogRef.close(true);
         },
         error: (err: any) => {
           console.error(err);
-          alert("¡Error al crear este registro!");
+          this.toast.error("¡Error al crear este registro!");
         },
       });
     }

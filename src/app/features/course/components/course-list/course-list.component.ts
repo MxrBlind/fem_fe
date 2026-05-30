@@ -6,6 +6,7 @@ import {CourseService} from "../../service/course.service";
 import {MatDialog} from "@angular/material/dialog";
 import {CourseNewComponent} from "../course-new/course-new.component";
 import {CourseEditComponent} from "../course-edit/course-edit.component";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-course-list',
@@ -43,7 +44,7 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(courseService: CourseService, dialog: MatDialog) {
+  constructor(courseService: CourseService, dialog: MatDialog, private toast: ToastService) {
     this.dialog = dialog;
     this.courseService = courseService;
   }
@@ -87,7 +88,7 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     if (confirm) {
       this.courseService.deleteCourse(id).subscribe({
         next: () => {
-          alert('Curso eliminado');
+          this.toast.success('Curso eliminado');
           this.getCourseList();
         },
         error: (err) => {

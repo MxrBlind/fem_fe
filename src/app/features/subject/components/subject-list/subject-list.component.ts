@@ -6,6 +6,7 @@ import {SubjectService} from "../../service/subject-service";
 import {MatDialog} from "@angular/material/dialog";
 import {SubjectEditComponent} from "../subject-edit/subject-edit.component";
 import {SubjectNewComponent} from "../subject-new/subject-new/subject-new.component";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-subject-list',
@@ -27,7 +28,7 @@ export class SubjectListComponent implements OnInit {
   ];
   dialog: any;
 
-  constructor(subjectService: SubjectService, dialog: MatDialog) {
+  constructor(subjectService: SubjectService, dialog: MatDialog, private toast: ToastService) {
     this.dialog = dialog;
     this.subjectService = subjectService;
   }
@@ -64,7 +65,7 @@ export class SubjectListComponent implements OnInit {
     if (confirm) {
       this.subjectService.deleteSubject(id).subscribe({
         next: (res) => {
-          alert('Materia eliminada');
+          this.toast.success('Materia eliminada');
           this.getSubjectList();
         },
         error: (err) => {

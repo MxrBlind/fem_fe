@@ -6,6 +6,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {StudentEditComponent} from "../student-edit/student-edit.component";
 import {MatDialog} from "@angular/material/dialog";
 import {StudentNewComponent} from "../student-new/student-new.component";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-student-list',
@@ -43,7 +44,7 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(StudentService: StudentService, dialog: MatDialog) {
+  constructor(StudentService: StudentService, dialog: MatDialog, private toast: ToastService) {
     this.dialog = dialog;
     this.studentService = StudentService;
   }
@@ -87,7 +88,7 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     if (confirm) {
       this.studentService.deleteStudent(id).subscribe({
         next: () => {
-          alert('Estudiante eliminado');
+          this.toast.success('Estudiante eliminado');
           this.getStudentList();
         },
         error: (err) => {

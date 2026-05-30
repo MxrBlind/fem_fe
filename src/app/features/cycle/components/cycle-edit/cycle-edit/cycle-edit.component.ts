@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {CycleService} from "../../../service/cycle.service";
+import {ToastService} from "../../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-cycle-edit',
@@ -18,6 +19,7 @@ export class CycleEditComponent implements OnInit {
     private dialogRef: MatDialogRef<CycleEditComponent>,
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private toast: ToastService,
   ) {
     this.cycleEditForm = this.formBuilder.group({
       id: ['', Validators.required],
@@ -48,12 +50,12 @@ export class CycleEditComponent implements OnInit {
       if (this.data) {
         this.cycleService.updateCycle(this.data.id, this.cycleEditForm.getRawValue()).subscribe({
           next: (val: any) => {
-            alert('Ciclo actualizado correctamente');
+            this.toast.success('Ciclo actualizado correctamente');
             this.dialogRef.close(true);
           }
         });
       } else {
-        alert('Hubo un error al actualizar el ciclo: DATA is empty');
+        this.toast.error('Hubo un error al actualizar el ciclo: DATA is empty');
       }
     }
   }

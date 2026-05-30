@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {StudentService} from "../../service/student.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-student-new',
@@ -15,7 +16,8 @@ export class StudentNewComponent {
   constructor(
     private studentService: StudentService,
     private dialogRef: MatDialogRef<StudentNewComponent>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toast: ToastService,
   ) {
     this.studentNewForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -39,13 +41,13 @@ export class StudentNewComponent {
     if (this.studentNewForm.valid) {
       this.studentService.addStudent(this.studentNewForm.getRawValue()).subscribe({
         next: (val: any) => {
-          alert('¡Estudiante creado exitosamente!');
+          this.toast.success('¡Estudiante creado exitosamente!');
           this.studentNewForm.reset();
           this.dialogRef.close(true);
         },
         error: (err: any) => {
           console.error(err);
-          alert("Error al creat al estudiante!");
+          this.toast.error("Error al creat al estudiante!");
         },
       });
     }

@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TeacherService} from "../../service/teacher.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-teacher-edit',
@@ -17,6 +18,7 @@ export class TeacherEditComponent implements OnInit {
     private dialogRef: MatDialogRef<TeacherEditComponent>,
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private toast: ToastService,
   ) {
     this.teacherEditForm = this.formBuilder.group({
       username: new FormControl({value: data.username, disabled: true}),
@@ -42,12 +44,12 @@ export class TeacherEditComponent implements OnInit {
       if (this.data) {
         this.teacherService.updateTeacher(this.data.id, this.teacherEditForm.getRawValue()).subscribe({
           next: (val: any) => {
-            alert('Profesor actualizado correctamente');
+            this.toast.success('Profesor actualizado correctamente');
             this.dialogRef.close(true);
           }
         });
       } else {
-        alert('Hubo un error al actualizar el profesor: DATA is empty');
+        this.toast.error('Hubo un error al actualizar el profesor: DATA is empty');
       }
     }
   }

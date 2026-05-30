@@ -6,6 +6,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {TeacherNewComponent} from "../teacher-new/teacher-new.component";
 import {TeacherEditComponent} from "../teacher-edit/teacher-edit.component";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-teacher-list',
@@ -43,7 +44,7 @@ export class TeacherListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(teacherService: TeacherService, dialog: MatDialog) {
+  constructor(teacherService: TeacherService, dialog: MatDialog, private toast: ToastService) {
     this.teacherService = teacherService;
     this.dialog = dialog;
   }
@@ -89,7 +90,7 @@ export class TeacherListComponent implements OnInit, AfterViewInit {
     if (confirm) {
       this.teacherService.deleteTeacher(id).subscribe({
         next: () => {
-          alert('Maestro eliminado');
+          this.toast.success('Maestro eliminado');
           this.getTeacherList();
         },
         error: (err) => {

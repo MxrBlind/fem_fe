@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TeacherService} from "../../service/teacher.service";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-teacher-new',
@@ -17,6 +18,7 @@ export class TeacherNewComponent {
     private dialogRef: MatDialogRef<TeacherNewComponent>,
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private toast: ToastService,
   ) {
     this.teacherNewForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -40,13 +42,13 @@ export class TeacherNewComponent {
     if (this.teacherNewForm.valid) {
       this.teacherService.addTeacher(this.teacherNewForm.getRawValue()).subscribe({
         next: (val: any) => {
-          alert('¡Profesor creado exitosamente!');
+          this.toast.success('¡Profesor creado exitosamente!');
           this.teacherNewForm.reset();
           this.dialogRef.close(true);
         },
         error: (err: any) => {
           console.error(err);
-          alert("¡Error al crear al profesor!");
+          this.toast.error("¡Error al crear al profesor!");
         },
       });
     }

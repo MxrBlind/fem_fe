@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EnrollmentService} from "../../service/enrollment.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {jwtDecode} from "jwt-decode";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-enrollment-edit',
@@ -20,6 +21,7 @@ export class EnrollmentEditComponent implements OnInit {
     private dialogRef: MatDialogRef<EnrollmentEditComponent>,
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private toast: ToastService,
   ) {
     this.enrollmentEditForm = this.formBuilder.group({
       student: this.formBuilder.group({
@@ -75,12 +77,12 @@ export class EnrollmentEditComponent implements OnInit {
       if (this.data) {
         this.enrollmentService.updateEnrollment(this.data.id, this.enrollmentEditForm.getRawValue()).subscribe({
           next: (val: any) => {
-            alert('Inscripción actualizada correctamente');
+            this.toast.success('Inscripción actualizada correctamente');
             this.dialogRef.close(true);
           }
         });
       } else {
-        alert('Hubo un error al actualizar el registro: DATA is empty');
+        this.toast.error('Hubo un error al actualizar el registro: DATA is empty');
       }
     }
   }

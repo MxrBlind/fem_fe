@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SubjectService} from "../../service/subject-service";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-subject-edit',
@@ -19,6 +20,7 @@ export class SubjectEditComponent implements OnInit {
     private dialogRef: MatDialogRef<SubjectEditComponent>,
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private toast: ToastService,
   ) {
     this.subjectEditForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -58,13 +60,13 @@ export class SubjectEditComponent implements OnInit {
     if (this.subjectEditForm.valid) {
       this.subjectService.updateSubject(this.data.id, this.subjectEditForm.getRawValue()).subscribe({
         next: (val: any) => {
-          alert('¡Materia actualizada exitosamente!');
+          this.toast.success('¡Materia actualizada exitosamente!');
           this.subjectEditForm.reset();
           this.dialogRef.close(true);
         },
         error: (err: any) => {
           console.error(err);
-          alert("¡Error al actualizar la materia!");
+          this.toast.error("¡Error al actualizar la materia!");
         },
       });
     }

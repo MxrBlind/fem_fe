@@ -7,6 +7,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {EnrollmentNewComponent} from "../enrollment-new/enrollment-new.component";
 import {EnrollmentEditComponent} from "../enrollment-edit/enrollment-edit.component";
 import {jwtDecode} from "jwt-decode";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-enrollment-list',
@@ -28,6 +29,7 @@ export class EnrollmentListComponent implements OnInit, AfterViewInit {
     'student.profile.church',
     'course.subject.description',
     'course.subject.category.title',
+    'grade',
     'action'
   ];
   dialog: any;
@@ -48,7 +50,7 @@ export class EnrollmentListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(enrollmentService: EnrollmentService, dialog: MatDialog) {
+  constructor(enrollmentService: EnrollmentService, dialog: MatDialog, private toast: ToastService) {
     this.dialog = dialog;
     this.enrollmentService = enrollmentService;
   }
@@ -111,7 +113,7 @@ export class EnrollmentListComponent implements OnInit, AfterViewInit {
     if (confirm) {
       this.enrollmentService.deleteEnrollment(id).subscribe({
         next: () => {
-          alert('Registro eliminado');
+          this.toast.success('Registro eliminado');
           this.getEnrollmentList();
         },
         error: (err) => {

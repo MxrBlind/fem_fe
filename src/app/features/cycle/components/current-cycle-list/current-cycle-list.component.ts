@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {CourseEditComponent} from "../../../course/components/course-edit/course-edit.component";
 import {CourseNewComponent} from "../../../course/components/course-new/course-new.component";
 import {switchMap} from "rxjs";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-current-cycle-list',
@@ -49,7 +50,7 @@ export class CurrentCycleListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(courseService: CourseService, cycleService: CycleService, dialog: MatDialog) {
+  constructor(courseService: CourseService, cycleService: CycleService, dialog: MatDialog, private toast: ToastService) {
     this.dialog = dialog;
     this.cycleService = cycleService;
     this.courseService = courseService;
@@ -82,7 +83,7 @@ export class CurrentCycleListComponent implements OnInit, AfterViewInit {
     if (confirm) {
       this.courseService.deleteCourse(id).subscribe({
         next: () => {
-          alert('curso eliminado');
+          this.toast.success('curso eliminado');
           this.getCurrentCycle();
         },
         error: (err) => {

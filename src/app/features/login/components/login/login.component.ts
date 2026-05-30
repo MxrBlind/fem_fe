@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginService} from "../../service/login.service";
 import {Router} from "@angular/router";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent {
   constructor(
     private loginService: LoginService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toast: ToastService,
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -35,7 +37,7 @@ export class LoginComponent {
         },
         error: (err: any) => {
           console.error(err);
-          alert("Usuario o password incorrectos.");
+          this.toast.error("Usuario o password incorrectos.");
         },
       });
     }

@@ -4,6 +4,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {GradeService} from "../../service/grade.service";
 import {ProfileService} from '../../../profile/service/profile.service';
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-grade-list',
@@ -39,7 +40,7 @@ export class GradeListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(gradeService: GradeService, profileService: ProfileService) {
+  constructor(gradeService: GradeService, profileService: ProfileService, private toast: ToastService) {
     this.gradeService = gradeService;
     this.profileService = profileService;
   }
@@ -57,7 +58,7 @@ export class GradeListComponent implements OnInit, AfterViewInit {
 
   downloadCertificate(data: any) {
     if (!data) {
-      alert('Datos inválidos para descargar el certificado.');
+      this.toast.error('Datos inválidos para descargar el certificado.');
       return;
     }
 
@@ -65,7 +66,7 @@ export class GradeListComponent implements OnInit, AfterViewInit {
     const studentId = data.studentId ?? data.studentID ?? data.userId;
 
     if (!enrollmentId || !studentId) {
-      alert('Faltan enrollmentId o studentId en los datos proporcionados.');
+      this.toast.error('Faltan enrollmentId o studentId en los datos proporcionados.');
       return;
     }
 
@@ -82,7 +83,7 @@ export class GradeListComponent implements OnInit, AfterViewInit {
       },
       error: (err: any) => {
         console.error('Error descargando el certificado', err);
-        alert('Error descargando el certificado.');
+        this.toast.error('Error descargando el certificado.');
       }
     });
   }
@@ -92,7 +93,7 @@ export class GradeListComponent implements OnInit, AfterViewInit {
     this.profileService.getCurrentUserId().subscribe({
       next: (studentId) => {
         if (!studentId) {
-          alert('Error con el studentId actual. No se pudo descargar el reporte de calificaciones.');
+          this.toast.error('Error con el studentId actual. No se pudo descargar el reporte de calificaciones.');
           return;
         }
 
@@ -111,13 +112,13 @@ export class GradeListComponent implements OnInit, AfterViewInit {
           },
           error: (err: any) => {
             console.error('Error descargando el reporte', err);
-            alert('Error descargando el reporte.');
+            this.toast.error('Error descargando el reporte.');
           }
         });
       },
       error: (err) => {
         console.error('Error obteniendo el studentId', err);
-        alert('No se pudo obtener el usuario actual.');
+        this.toast.error('No se pudo obtener el usuario actual.');
       }
     });
   }

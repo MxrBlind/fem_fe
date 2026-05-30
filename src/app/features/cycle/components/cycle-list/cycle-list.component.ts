@@ -6,6 +6,7 @@ import {CycleService} from "../../service/cycle.service";
 import {MatDialog} from "@angular/material/dialog";
 import {CycleEditComponent} from "../cycle-edit/cycle-edit/cycle-edit.component";
 import {CycleNewComponent} from "../cycle-new/cycle-new/cycle-new.component";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-cycle-list',
@@ -44,7 +45,7 @@ export class CycleListComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(cycleService: CycleService, dialog: MatDialog) {
+  constructor(cycleService: CycleService, dialog: MatDialog, private toast: ToastService) {
     this.dialog = dialog;
     this.cycleService = cycleService;
   }
@@ -76,7 +77,7 @@ export class CycleListComponent implements OnInit, AfterViewInit {
     if (confirm) {
       this.cycleService.deleteCycle(id).subscribe({
         next: () => {
-          alert('ciclo eliminado');
+          this.toast.success('ciclo eliminado');
           this.getCycleList();
         },
         error: (err) => {

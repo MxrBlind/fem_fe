@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CourseService} from "../../service/course.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatDialogRef} from "@angular/material/dialog";
+import {ToastService} from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-course-new',
@@ -18,7 +19,8 @@ export class CourseNewComponent implements OnInit {
   constructor(
     private courseService: CourseService,
     private dialogRef: MatDialogRef<CourseNewComponent>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toast: ToastService,
   ) {
 
     this.courseNewForm = this.formBuilder.group({
@@ -73,13 +75,13 @@ export class CourseNewComponent implements OnInit {
     if (this.courseNewForm.valid) {
       this.courseService.createCourse(this.courseNewForm.getRawValue()).subscribe({
         next: (val: any) => {
-          alert('¡Materia creada exitosamente!');
+          this.toast.success('¡Materia creada exitosamente!');
           this.courseNewForm.reset();
           this.dialogRef.close(true);
         },
         error: (err: any) => {
           console.error(err);
-          alert("Error al crear la materia!");
+          this.toast.error("Error al crear la materia!");
         },
       });
     } else {

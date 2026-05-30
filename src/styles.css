@@ -11,3 +11,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
   padding-left: 100px;
   padding-right: 100px;
 }
+
+.toast-success .mdc-snackbar__surface {
+  background-color: #419245 !important;
+}
+.toast-success .mdc-snackbar__label,
+.toast-success .mat-mdc-snack-bar-label {
+  color: #fff !important;
+}
+
+.toast-error .mdc-snackbar__surface {
+  background-color: #c62828 !important;
+}
+.toast-error .mdc-snackbar__label,
+.toast-error .mat-mdc-snack-bar-label {
+  color: #fff !important;
+}
