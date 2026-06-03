@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {EnrollmentService} from "../../service/enrollment.service";
 import {ToastService} from "../../../../shared/services/toast.service";
@@ -12,8 +12,12 @@ import {ToastService} from "../../../../shared/services/toast.service";
 export class EnrollmentNewComponent implements OnInit {
 
   enrollmentNewForm: FormGroup;
-  students: any;
-  courses: any;
+  students: any[] = [];
+  filteredStudents: any[] = [];
+  courses: any[] = [];
+  filteredCourses: any[] = [];
+  studentFilter = new FormControl('');
+  courseFilter = new FormControl('');
 
   constructor(
     private enrollmentService: EnrollmentService,
@@ -53,6 +57,7 @@ export class EnrollmentNewComponent implements OnInit {
     this.enrollmentService.getStudents().subscribe({
       next: (res) => {
         this.students = res;
+        this.filteredStudents = res;
       },
       error: (err) => {
         console.log(err);
@@ -62,10 +67,25 @@ export class EnrollmentNewComponent implements OnInit {
     this.enrollmentService.getCoursesByCycle(this.data.currentCycleId).subscribe({
       next: (res) => {
         this.courses = res;
+        this.filteredCourses = res;
       },
       error: (err) => {
         console.log(err);
       }
+    });
+
+    this.studentFilter.valueChanges.subscribe(val => {
+      const search = (val || '').toLowerCase();
+      this.filteredStudents = this.students.filter(s =>
+        `${s.profile.name} ${s.profile.parentLastName}`.toLowerCase().includes(search)
+      );
+    });
+
+    this.courseFilter.valueChanges.subscribe(val => {
+      const search = (val || '').toLowerCase();
+      this.filteredCourses = this.courses.filter(c =>
+        c.subject.description.toLowerCase().includes(search)
+      );
     });
   }
 }
