@@ -22,7 +22,7 @@ export class SubjectNewComponent implements OnInit {
     private toast: ToastService,
   ) {
     this.subjectNewForm = this.formBuilder.group({
-      title: ['', Validators.required],
+      code: ['', Validators.required],
       description: ['', Validators.required],
       category: this.formBuilder.group({
         id: ['', Validators.required],
