@@ -28,6 +28,7 @@ export class TeacherEditComponent implements OnInit {
         parentLastName: ['', Validators.required],
         motherLastName: ['', Validators.required],
         email: ['', Validators.required],
+        phone: ['', Validators.required],
         birthDate: ['', Validators.required],
         address: ['', Validators.required],
         church: ['', Validators.required]

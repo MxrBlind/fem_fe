@@ -25,6 +25,8 @@ export class StudentListComponent implements OnInit, AfterViewInit {
     'profile.name',
     'profile.parentLastName',
     'profile.motherLastName',
+    'profile.email',
+    'profile.phone',
     'profile.church',
     'action'
   ];
@@ -123,9 +125,11 @@ export class StudentListComponent implements OnInit, AfterViewInit {
           const name = (item.profile?.name ?? '').toString().toLowerCase();
           const parentLast = (item.profile?.parentLastName ?? '').toString().toLowerCase();
           const motherLast = (item.profile?.motherLastName ?? '').toString().toLowerCase();
+          const email = (item.profile?.email ?? '').toString().toLowerCase();
+          const phone = (item.profile?.phone ?? '').toString().toLowerCase();
           const church = (item.profile?.church ?? '').toString().toLowerCase();
 
-          const combined = `${id} ${name} ${parentLast} ${motherLast} ${church}`;
+          const combined = `${id} ${name} ${parentLast} ${motherLast} ${email} ${phone} ${church}`;
           return combined.includes(search);
         };
 

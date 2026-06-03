@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
       motherLastName: ['', Validators.required],
       birthDate: ['', Validators.required],
       email: ['', Validators.required],
+      phone: ['', Validators.required],
       address: ['', Validators.required],
       church: ['', Validators.required],
     });
